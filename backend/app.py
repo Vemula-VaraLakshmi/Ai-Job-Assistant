@@ -2,14 +2,18 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import fitz  # PyMuPDF
 from openai import OpenAI
+from dotenv import load_dotenv
 import os
+
+# ✅ Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Replace with your real key, DO NOT expose this publicly
+# ✅ Securely load the OpenRouter API key from environment
 client = OpenAI(
-    api_key="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",  # keep secret!
+    api_key=os.getenv("OPENROUTER_API_KEY"),
     base_url="https://openrouter.ai/api/v1"
 )
 
@@ -49,7 +53,7 @@ Use a confident, enthusiastic tone and focus on relevant skills.
 
     try:
         response = client.chat.completions.create(
-            model="mistralai/mixtral-8x7b-instruct",  # ✅ Correct OpenRouter model name
+            model="mistralai/mixtral-8x7b-instruct",
             messages=[
                 {"role": "system", "content": "You generate personalized cover letters."},
                 {"role": "user", "content": prompt}
