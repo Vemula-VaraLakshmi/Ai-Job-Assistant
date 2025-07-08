@@ -5,13 +5,13 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-# ✅ Load environment variables from .env file
+# Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# ✅ Securely load the OpenRouter API key from environment
+# Securely load the OpenRouter API key from environment
 client = OpenAI(
     api_key=os.getenv("OPENROUTER_API_KEY"),
     base_url="https://openrouter.ai/api/v1"
@@ -63,6 +63,8 @@ Use a confident, enthusiastic tone and focus on relevant skills.
         cover_letter = response.choices[0].message.content.strip()
         return jsonify({"cover_letter": cover_letter})
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":

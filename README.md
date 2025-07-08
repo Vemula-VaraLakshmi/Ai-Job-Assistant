@@ -137,9 +137,8 @@ Drag and drop image files directly into this section on GitHub to show the UI.
 
 ---
 
-## 📜 License
 
-This project is open-source under the **MIT License** — feel free to use, improve, and share it!
+This project is open-source ,feel free to use, improve, and share it!
 
 ---
 
