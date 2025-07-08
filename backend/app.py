@@ -9,7 +9,8 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["http://localhost:3000", "https://ai-job-assistant-mu.vercel.app"])
+
 
 # Securely load the OpenRouter API key from environment
 client = OpenAI(
